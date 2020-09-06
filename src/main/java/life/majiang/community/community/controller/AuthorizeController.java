@@ -1,7 +1,9 @@
 package life.majiang.community.community.controller;
 
+import life.majiang.community.community.Model.User;
 import life.majiang.community.community.dto.AccessTokenDTO;
 import life.majiang.community.community.dto.GithubUser;
+import life.majiang.community.community.mapper.UserMapper;
 import life.majiang.community.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @Controller
 public class AuthorizeController {
@@ -24,6 +27,9 @@ public class AuthorizeController {
     @Value("${github.redirect.url}")
     private String redirectUri;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
                            @RequestParam(name="state") String state,
@@ -35,11 +41,18 @@ public class AuthorizeController {
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser user = githubProvider.getUser(accessToken);
-        System.out.println(user.getName());
-        if (user != null){
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        System.out.println(githubUser.getName());
+        if (githubUser != null){
             //login success!
-            request.getSession().setAttribute("user",user);
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCrete(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtModified());
+            userMapper.insert(user);
+            request.getSession().setAttribute("githubUser",githubUser);
             return "redirect:/";
         }else{
             //login failed!
