@@ -17,7 +17,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="community" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -115,5 +117,6 @@
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.73" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.21" level="project" />
+    <orderEntry type="library" name="Maven: org.flywaydb:flyway-core:6.5.5" level="project" />
   </component>
 </module>
