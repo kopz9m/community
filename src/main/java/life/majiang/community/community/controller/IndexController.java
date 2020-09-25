@@ -28,15 +28,16 @@ public class IndexController {
                         @RequestParam(name = "size",defaultValue = "2") Integer size
                         ){
         Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length != 0)
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                User user = userMapper.findByToken(token);
-                if (user != null){
-                    request.getSession().setAttribute("user",user);
+        if (cookies != null && cookies.length != 0){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    User user = userMapper.findByToken(token);
+                    if (user != null){
+                        request.getSession().setAttribute("user",user);
+                    }
+                    break;
                 }
-                break;
             }
         }
         PaginationDTO pagination = questionService.list(page,size);
