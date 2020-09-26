@@ -36,7 +36,7 @@ public class QuestionService {
         if (page > totalPage){
             page = totalPage;
         }
-        paginationDTO.setPagination(totalCount,page);
+        paginationDTO.setPagination(totalPage,page);
 
         Integer offset = size * (page - 1);
         List<Question> questions = questionMapper.list(offset,size);
@@ -68,11 +68,10 @@ public class QuestionService {
 
         if (page < 1){
             page = 1;
-        }
-        if (page > totalPage){
+        } else if (page > totalPage){
             page = totalPage;
         }
-        paginationDTO.setPagination(totalCount,page);
+        paginationDTO.setPagination(totalPage,page);
 
 
         Integer offset = size * (page - 1);
