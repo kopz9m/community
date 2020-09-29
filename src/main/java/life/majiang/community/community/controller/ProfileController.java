@@ -2,10 +2,8 @@ package life.majiang.community.community.controller;
 
 import life.majiang.community.community.Model.User;
 import life.majiang.community.community.dto.PaginationDTO;
-import life.majiang.community.community.mapper.UserMapper;
 import life.majiang.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,28 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ProfileController {
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private QuestionService questionService;
-    User user = null;
     @GetMapping("/profile/{action}")
     public String profile(HttpServletRequest request,
                           @PathVariable(name="action")String action, Model model,
                           @RequestParam(name = "page",defaultValue = "1") Integer page,
                           @RequestParam(name = "size",defaultValue = "2") Integer size) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length != 0) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")) {
-                    String token = cookie.getValue();
-                    user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
+       User user = (User)request.getSession().getAttribute("user");
         if (user == null){
             return "redirect:/";
         }
