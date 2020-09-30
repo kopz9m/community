@@ -1,7 +1,7 @@
-package life.majiang.community.community.service;
+package life.majiang.community.service;
 
-import life.majiang.community.community.Model.User;
-import life.majiang.community.community.mapper.UserMapper;
+import life.majiang.community.Model.User;
+import life.majiang.community.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package life.majiang.community.community.mapper;
+package life.majiang.community.mapper;
 
-import life.majiang.community.community.Model.Question;
+import life.majiang.community.Model.Question;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -1,11 +1,11 @@
-package life.majiang.community.community.service;
+package life.majiang.community.service;
 
-import life.majiang.community.community.Model.Question;
-import life.majiang.community.community.Model.User;
-import life.majiang.community.community.dto.PaginationDTO;
-import life.majiang.community.community.dto.QuestionDTO;
-import life.majiang.community.community.mapper.QuestionMapper;
-import life.majiang.community.community.mapper.UserMapper;
+import life.majiang.community.Model.Question;
+import life.majiang.community.Model.User;
+import life.majiang.community.dto.PaginationDTO;
+import life.majiang.community.dto.QuestionDTO;
+import life.majiang.community.mapper.QuestionMapper;
+import life.majiang.community.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

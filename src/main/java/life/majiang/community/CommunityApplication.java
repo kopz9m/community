@@ -1,4 +1,4 @@
-package life.majiang.community.community;
+package life.majiang.community;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
