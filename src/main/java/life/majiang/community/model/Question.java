@@ -1,4 +1,4 @@
-package life.majiang.community.Model;
+package life.majiang.community.model;
 
 import lombok.Data;
 

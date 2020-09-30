@@ -1,6 +1,6 @@
 package life.majiang.community.controller;
 
-import life.majiang.community.Model.User;
+import life.majiang.community.model.User;
 import life.majiang.community.dto.AccessTokenDTO;
 import life.majiang.community.dto.GithubUser;
 import life.majiang.community.mapper.UserMapper;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
@@ -55,7 +54,7 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setGmtCrete(System.currentTimeMillis());
+            user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtModified());
             user.setAvatarUrl(githubUser.getAvatarUrl());
 

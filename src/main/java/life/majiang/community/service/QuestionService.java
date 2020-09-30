@@ -1,7 +1,7 @@
 package life.majiang.community.service;
 
-import life.majiang.community.Model.Question;
-import life.majiang.community.Model.User;
+import life.majiang.community.model.Question;
+import life.majiang.community.model.User;
 import life.majiang.community.dto.PaginationDTO;
 import life.majiang.community.dto.QuestionDTO;
 import life.majiang.community.mapper.QuestionMapper;
