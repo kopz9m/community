@@ -21,7 +21,6 @@ public class UserService {
         if (users.size() == 0) {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-
             userMapper.insert(user);
         } else {
             User dbUser = users.get(0);
