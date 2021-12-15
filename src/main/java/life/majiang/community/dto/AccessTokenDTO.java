@@ -8,5 +8,6 @@ public class AccessTokenDTO {
     private String client_secret;
     private String code;
     private String redirect_uri;
-    private String state;
+    // api removed：state
+    //private String state;
 }
