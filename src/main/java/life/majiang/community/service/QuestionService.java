@@ -19,10 +19,11 @@ import java.util.List;
 public class QuestionService {
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
     private QuestionMapper questionMapper;
-    public PaginationDTO list(Integer page, Integer size) {
 
+    public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
         Integer totalCount = questionMapper.count();
@@ -122,5 +123,12 @@ public class QuestionService {
             int updated = questionMapper.update(question);
             if (updated != 1) throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
+    }
+
+    public void incView(Integer id) {
+        //Question question = questionMapper.getById(id);
+//        question.setViewCount(question.getViewCount() + 1);
+//        questionMapper.update(question);
+        questionMapper.setViewCount(id);
     }
 }
