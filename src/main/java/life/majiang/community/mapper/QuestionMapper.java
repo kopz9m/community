@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface QuestionMapper {
     @Insert("insert into question(title,description,gmt_create,gmt_modified,creator,tag) values (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
-    void create(Question question);
+    void insert(Question question);
 
     @Select("select * from question limit #{offset},#{size}")
     List<Question> list(@Param(value = "offset")Integer offset, @Param(value ="size") Integer size);
@@ -26,5 +26,5 @@ public interface QuestionMapper {
     Question getById(@Param("id") Integer id);
 
     @Update("update question set title = #{title},description = #{description},gmt_modified = #{gmtModified},tag = #{tag} where id = #{id}")
-    void update(Question question);
+    int update(Question question);
 }

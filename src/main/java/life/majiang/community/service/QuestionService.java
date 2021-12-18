@@ -1,5 +1,7 @@
 package life.majiang.community.service;
 
+import life.majiang.community.exception.CustomizeErrorCode;
+import life.majiang.community.exception.CustomizeException;
 import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
 import life.majiang.community.dto.PaginationDTO;
@@ -93,6 +95,7 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.getById(id);
+        if (question == null) throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -102,12 +105,22 @@ public class QuestionService {
 
     public void createOrUpdate(Question question) {
         if (question.getId() == null) {
+            //创建
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
-            questionMapper.create(question);
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
+            questionMapper.insert(question);
         } else {
-            question.setGmtModified(System.currentTimeMillis());
-            questionMapper.update(question);
+            //更新
+            Question updateQuestion = new Question();
+            updateQuestion.setGmtModified(System.currentTimeMillis());
+            updateQuestion.setTitle(question.getTitle());
+            updateQuestion.setDescription(question.getDescription());
+            updateQuestion.setTag(question.getTag());
+            int updated = questionMapper.update(question);
+            if (updated != 1) throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
     }
 }
