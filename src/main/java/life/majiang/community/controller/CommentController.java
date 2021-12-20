@@ -1,6 +1,6 @@
 package life.majiang.community.controller;
 
-import life.majiang.community.dto.CommentDto;
+import life.majiang.community.dto.CommentCreateDto;
 import life.majiang.community.dto.ResultDTO;
 import life.majiang.community.exception.CustomizeErrorCode;
 import life.majiang.community.model.Comment;
@@ -21,24 +21,23 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDto commentDto,
+    public Object post(@RequestBody CommentCreateDto commentCreateDto,
                        HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        if (commentDto == null || StringUtils.isEmpty(commentDto.getContent())) {
+        if (commentCreateDto == null || StringUtils.isEmpty(commentCreateDto.getContent())) {
             return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
         }
 
         Comment comment = new Comment();
-        comment.setParentId(commentDto.getParentId());
-        comment.setContent(commentDto.getContent());
-        comment.setType(commentDto.getType());
+        comment.setParentId(commentCreateDto.getParentId());
+        comment.setContent(commentCreateDto.getContent());
+        comment.setType(commentCreateDto.getType());
         comment.setGmtModified(System.currentTimeMillis());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setCommentator(user.getId());
