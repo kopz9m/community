@@ -1,18 +1,21 @@
 package life.majiang.community.service;
 
-import life.majiang.community.model.User;
 import life.majiang.community.mapper.UserMapper;
+import life.majiang.community.model.User;
 import life.majiang.community.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserMapper userMapper;
 
+    @Transactional
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria()
@@ -33,7 +36,6 @@ public class UserService {
             example.createCriteria().
                     andIdEqualTo(dbUser.getId());
             userMapper.updateByExampleSelective(updateUser,example);
-
         }
     }
 }

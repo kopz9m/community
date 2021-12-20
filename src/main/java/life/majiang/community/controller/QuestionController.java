@@ -1,6 +1,8 @@
 package life.majiang.community.controller;
 
 import life.majiang.community.dto.QuestionDTO;
+import life.majiang.community.exception.CustomizeErrorCode;
+import life.majiang.community.exception.CustomizeException;
 import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.service.QuestionService;
 import org.apache.ibatis.annotations.Param;
@@ -15,13 +17,21 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
     @GetMapping("/question/{id}")
-    public String quedstion (@PathVariable(name = "id") Integer id,
+    public String question (@PathVariable(name = "id") String id,
     Model model){
-        //浏览次数+1
-        questionService.incView(id);
 
-        QuestionDTO questionDTO = questionService.getById(id);
+
+        Long questionId = null;
+        try {
+            questionId = Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);
+        }
+        QuestionDTO questionDTO = questionService.getById(questionId);
         model.addAttribute("question",questionDTO);
+
+        //浏览次数+1
+        questionService.incView(questionId);
         return "question";
     }
 }
