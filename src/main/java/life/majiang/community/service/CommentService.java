@@ -62,7 +62,6 @@ public class CommentService {
             // 增加评论数
             Comment parentComment = new Comment();
             parentComment.setId(comment.getParentId());
-            //父评论回复数设置为 1 ？？？
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
 

@@ -35,13 +35,17 @@ public class QuestionController {
             throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);
         }
 
+        // 显示主贴
         QuestionDTO questionDTO = questionService.getById(questionId);
+        // 显示评论
         List<CommentDTO> comments = commentService.listByTargetId(questionId, CommentTypeEnum.QUESTION);
-        //List<QuestionDTO> relatedQuestions = questionService.selectRelated(questionDTO);
+        // 显示相关问题
+        List<QuestionDTO> relatedQuestions = questionService.selectRelated(questionDTO);
 
+        // 传输到前端
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", comments);
-        //model.addAttribute("relatedQuestions", relatedQuestions);
+        model.addAttribute("relatedQuestions", relatedQuestions);
 
         //浏览次数+1
         questionService.incView(questionId);
