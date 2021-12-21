@@ -35,11 +35,11 @@ public class QuestionController {
             throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);
         }
 
-        // 显示主贴
+        // 获取主贴
         QuestionDTO questionDTO = questionService.getById(questionId);
-        // 显示评论
+        // 获取评论
         List<CommentDTO> comments = commentService.listByTargetId(questionId, CommentTypeEnum.QUESTION);
-        // 显示相关问题
+        // 获取相关问题
         List<QuestionDTO> relatedQuestions = questionService.selectRelated(questionDTO);
 
         // 传输到前端

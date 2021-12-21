@@ -36,11 +36,10 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table schema="sys" tableName="user" domainObjectName="User" ></table>
-
-        <table schema="sys" tableName="question" domainObjectName="Question"></table>
-
-        <table schema="sys" tableName="comment" domainObjectName="Comment" ></table>
+<!--        <table schema="sys" tableName="user" domainObjectName="User" ></table>-->
+<!--        <table schema="sys" tableName="question" domainObjectName="Question"></table>-->
+<!--        <table schema="sys" tableName="comment" domainObjectName="Comment" ></table>-->
+        <table schema="sys" tableName="notification" domainObjectName="Notification" ></table>
 
     </context>
 </generatorConfiguration>

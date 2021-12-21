@@ -38,8 +38,9 @@ public class TagCache {
         tagDTOS.add(tool);
 
         TagDTO others = new TagDTO();
-        others.setCategoryName("其他问题");
+        others.setCategoryName("其他");
         others.setTags(Arrays.asList("面试","校招","算法","数据结构","职业规划"));
+        tagDTOS.add(others);
 
         return tagDTOS;
     }
