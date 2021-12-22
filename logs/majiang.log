@@ -1,0 +1,44 @@
+2021-12-23 02:03:16.291  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : Starting CommunityApplication on zpcMacBook-Pro with PID 42168 (/Users/zpc/community/target/classes started by zpc in /Users/zpc/community)
+2021-12-23 02:03:16.292  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2021-12-23 02:03:16.739  INFO 42168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8887 (http)
+2021-12-23 02:03:16.742  INFO 42168 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-23 02:03:16.743  INFO 42168 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-12-23 02:03:16.754  INFO 42168 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-23 02:03:16.754  INFO 42168 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 458 ms
+2021-12-23 02:03:17.102  INFO 42168 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-23 02:03:17.133  INFO 42168 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-12-23 02:03:17.203  INFO 42168 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2021-12-23 02:03:17.225  INFO 42168 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2021-12-23 02:03:17.227  INFO 42168 --- [restartedMain] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://localhost:3306/sys (MySQL 8.0)
+2021-12-23 02:03:17.241  INFO 42168 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.006s)
+2021-12-23 02:03:17.249  INFO 42168 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `sys`: 1
+2021-12-23 02:03:17.250  INFO 42168 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `sys` is up to date. No migration necessary.
+2021-12-23 02:03:17.326  INFO 42168 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-23 02:03:17.352  INFO 42168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8887 (http) with context path ''
+2021-12-23 02:03:17.360  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : Started CommunityApplication in 1.133 seconds (JVM running for 4657.804)
+2021-12-23 02:03:17.366  INFO 42168 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-23 02:03:20.041  INFO 42168 --- [http-nio-8887-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-23 02:03:20.043  INFO 42168 --- [http-nio-8887-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-23 02:03:20.049  INFO 42168 --- [http-nio-8887-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-12-23 02:06:43.582  INFO 42168 --- [Thread-37] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-12-23 02:06:43.582  INFO 42168 --- [Thread-37] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2021-12-23 02:06:43.587  INFO 42168 --- [Thread-37] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2021-12-23 02:06:43.877  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : Starting CommunityApplication on zpcMacBook-Pro with PID 42168 (/Users/zpc/community/target/classes started by zpc in /Users/zpc/community)
+2021-12-23 02:06:43.877  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2021-12-23 02:06:44.116  INFO 42168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8887 (http)
+2021-12-23 02:06:44.117  INFO 42168 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-23 02:06:44.117  INFO 42168 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-12-23 02:06:44.129  INFO 42168 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-23 02:06:44.130  INFO 42168 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 251 ms
+2021-12-23 02:06:44.340  INFO 42168 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-23 02:06:44.363  INFO 42168 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-12-23 02:06:44.419  INFO 42168 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2021-12-23 02:06:44.439  INFO 42168 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2021-12-23 02:06:44.439  INFO 42168 --- [restartedMain] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://localhost:3306/sys (MySQL 8.0)
+2021-12-23 02:06:44.447  INFO 42168 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.003s)
+2021-12-23 02:06:44.453  INFO 42168 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `sys`: 1
+2021-12-23 02:06:44.453  INFO 42168 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `sys` is up to date. No migration necessary.
+2021-12-23 02:06:44.512  INFO 42168 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-23 02:06:44.536  INFO 42168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8887 (http) with context path ''
+2021-12-23 02:06:44.540  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : Started CommunityApplication in 0.795 seconds (JVM running for 4864.988)
+2021-12-23 02:06:44.542  INFO 42168 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
