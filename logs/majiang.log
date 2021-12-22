@@ -42,3 +42,4 @@
 2021-12-23 02:06:44.536  INFO 42168 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8887 (http) with context path ''
 2021-12-23 02:06:44.540  INFO 42168 --- [restartedMain] l.m.community.CommunityApplication       : Started CommunityApplication in 0.795 seconds (JVM running for 4864.988)
 2021-12-23 02:06:44.542  INFO 42168 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-23 02:45:15.934  WARN 42168 --- [HikariPool-6 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Thread starvation or clock leap detected (housekeeper delta=2m30s406ms).
