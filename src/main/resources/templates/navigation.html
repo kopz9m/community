@@ -6,9 +6,9 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">哈哈社区</span>
+                        <span class="sr-only">majiang-community</span>
                     </button>
-                    <a class="navbar-brand" href="/">哈哈</a>
+                    <a class="navbar-brand" href="/">麻酱社区</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form navbar-left">
@@ -20,6 +20,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${session.user!=null}">
                             <a href="/publish">发布</a>
+                        </li>
+                        </li>
+                        <li><a href="/profile/replies">通知 <span class="badge" th:text="${session.unreadCount}"></span></a>
                         </li>
                         <li class="dropdown" th:if="${session.user != null}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"

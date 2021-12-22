@@ -120,5 +120,9 @@
     <orderEntry type="library" name="Maven: org.flywaydb:flyway-core:6.5.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.9" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.7" level="project" />
+    <orderEntry type="library" name="Maven: cn.ucloud.ufile:ufile-client-java:2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="Maven: cn.ucloud.ufile:ufile-core:2.1.1" level="project" />
   </component>
 </module>
