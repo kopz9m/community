@@ -17,21 +17,21 @@
     </resultMap>
 
     <update id="incView" parameterType="life.majiang.community.model.Question">
-    update QUESTION
+    update question
     set
     VIEW_COUNT = VIEW_COUNT + #{viewCount,jdbcType=INTEGER}
     where id = #{id}
     </update>
 
     <update id="incCommentCount" parameterType="life.majiang.community.model.Question">
-    update QUESTION
+    update question
     set
     COMMENT_COUNT = COMMENT_COUNT + #{commentCount,jdbcType=INTEGER}
     where id = #{id}
     </update>
 
     <select id="selectRelated" parameterType="life.majiang.community.model.Question" resultMap="BaseResultMap">
-        select * from QUESTION
+        select * from question
         <where>
             <if test="id != null">
                 and id != #{id}
@@ -45,7 +45,7 @@
 
     <select id="countBySearch" parameterType="life.majiang.community.dto.QuestionQueryDTO"
             resultType="java.lang.Integer">
-        select count(*) from QUESTION
+        select count(*) from question
         <where>
             <if test="search != null and search != ''">
                 and title regexp #{search}
@@ -67,12 +67,12 @@
 
     <select id="selectSticky" parameterType="life.majiang.community.dto.QuestionQueryDTO"
             resultMap="BaseResultMap">
-        select * from QUESTION where sticky > 0 order by sticky desc, gmt_create desc
+        select * from question where sticky > 0 order by sticky desc, gmt_create desc
     </select>
 
     <select id="selectBySearch" parameterType="life.majiang.community.dto.QuestionQueryDTO"
             resultMap="BaseResultMap">
-        select * from QUESTION
+        select * from question
         <where>
             <if test="search != null and search != ''">
                 and title regexp #{search}
