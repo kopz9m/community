@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,12 @@ import static org.apache.commons.io.FileUtils.copyURLToFile;
 // 用于处理图片
 @Slf4j
 public class FileUtils {
+
+    // 图片存放根目录
+    public static String path = System.getProperty("user.home") + System.getProperty("file.separator")
+            + "Pictures" + System.getProperty("file.separator") + "majiang" + System.getProperty("file.separator");
+
+
     private static List<String> suffix = new ArrayList<>();
 
     static {
@@ -51,14 +58,14 @@ public class FileUtils {
         }
     }
 
-    // 用 UUID 重命名文件名
+    // 用 UUID 生成文件名
     public static String newUUIDPNGFileName() {
         return UUID.randomUUID().toString().replace("-", "") + ".png";
     }
 
-    // 文件完整路径名
+    // 返回系统用户路径 + 新的文件名
     public static String newLocalFileName(String fileName) {
-        String path = System.getProperty("user.dir") + File.separator;
+        //String path = System.getProperty("user.dir") + File.separator;
         return newLocalFileName(path, fileName);
     }
 
@@ -91,8 +98,12 @@ public class FileUtils {
         }
     }
 
+
+    //test
     public static void main(String[] args) {
-        String x = FileUtils.newLocalFileName("http://luckydraw.cn-bj.ufileos.com/ffb5134b-8070-4d65-be0f-c3b1a0050dbc.jpg");
-        System.out.println(x);
+//        String x = FileUtils.newLocalFileName("http://luckydraw.cn-bj.ufileos.com/ffb5134b-8070-4d65-be0f-c3b1a0050dbc.jpg");
+       System.out.println(path);
+
+
     }
 }

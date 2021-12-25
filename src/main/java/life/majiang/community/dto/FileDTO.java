@@ -3,7 +3,7 @@ package life.majiang.community.dto;
 import lombok.Data;
 
 /**
- * Created by codedrinker on 2019/6/26.
+ * 主要将图片的 url 传入前端，嵌入html
  */
 @Data
 public class FileDTO {

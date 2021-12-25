@@ -3,7 +3,7 @@ package life.majiang.community.dto;
 import lombok.Data;
 
 @Data
-public class UFileResult {
+public class FileResult {
     /**
      * 文件名
      */
