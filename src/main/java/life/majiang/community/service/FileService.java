@@ -23,7 +23,7 @@ import java.nio.file.Paths;
 @Service
 public class FileService {
 
-    @Value("${server.address}")
+    @Value("${myHost}")
     private String host;
     @Value("${server.port}")
     private String port;
