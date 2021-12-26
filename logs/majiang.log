@@ -678,3 +678,149 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'my
 2021-12-26 03:17:22.032  INFO 64115 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2021-12-26 03:17:22.085  INFO 64115 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8887 (http) with context path ''
 2021-12-26 03:17:22.096  INFO 64115 --- [restartedMain] l.m.community.CommunityApplication       : Started CommunityApplication in 3.959 seconds (JVM running for 5.078)
+2021-12-26 03:30:59.679  INFO 64115 --- [http-nio-8887-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-26 03:30:59.680  INFO 64115 --- [http-nio-8887-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-26 03:30:59.692  INFO 64115 --- [http-nio-8887-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2021-12-26 03:32:20.347  INFO 64115 --- [http-nio-8887-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-26 03:32:21.250  INFO 64115 --- [http-nio-8887-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-26 03:52:16.566  WARN 64115 --- [http-nio-8887-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@32c3a227 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:21.571  WARN 64115 --- [http-nio-8887-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2b6b847d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:26.578  WARN 64115 --- [http-nio-8887-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7c65b9d1 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:31.580  WARN 64115 --- [http-nio-8887-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@586930ee (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:36.583  WARN 64115 --- [http-nio-8887-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3b7ad65f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:41.589  WARN 64115 --- [http-nio-8887-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@35c40c35 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:41.603 ERROR 64115 --- [http-nio-8887-exec-6] l.m.c.advice.CustomizeExceptionHandler   : handle error
+
+org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+### The error may exist in file [/Users/zpc/community/target/classes/mapper/UserMapper.xml]
+### The error may involve life.majiang.community.mapper.UserMapper.selectByExample
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92) ~[mybatis-spring-2.0.5.jar:2.0.5]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440) ~[mybatis-spring-2.0.5.jar:2.0.5]
+	at com.sun.proxy.$Proxy54.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:223) ~[mybatis-spring-2.0.5.jar:2.0.5]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85) ~[mybatis-3.5.5.jar:3.5.5]
+	at com.sun.proxy.$Proxy56.selectByExample(Unknown Source) ~[na:na]
+	at life.majiang.community.interceptor.SessionInterceptor.preHandle(SessionInterceptor.java:35) ~[classes/:na]
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:141) ~[spring-webmvc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1035) ~[spring-webmvc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) [spring-webmvc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [tomcat-embed-core-9.0.37.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.37.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1589) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_261]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_261]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.37.jar:9.0.37]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_261]
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+### The error may exist in file [/Users/zpc/community/target/classes/mapper/UserMapper.xml]
+### The error may involve life.majiang.community.mapper.UserMapper.selectByExample
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:149) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140) ~[mybatis-3.5.5.jar:3.5.5]
+	at sun.reflect.GeneratedMethodAccessor45.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_261]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_261]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426) ~[mybatis-spring-2.0.5.jar:2.0.5]
+	... 49 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:82) ~[spring-jdbc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.0.5.jar:2.0.5]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.0.5.jar:2.0.5]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:337) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:86) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89) ~[mybatis-3.5.5.jar:3.5.5]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.5.jar:3.5.5]
+	... 54 common frames omitted
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:695) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:197) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:162) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128) ~[HikariCP-3.4.5.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:158) ~[spring-jdbc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:116) ~[spring-jdbc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:79) ~[spring-jdbc-5.2.8.RELEASE.jar:5.2.8.RELEASE]
+	... 64 common frames omitted
+Caused by: java.sql.SQLNonTransientConnectionException: No operations allowed after connection closed.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:110) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:73) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.ConnectionImpl.setNetworkTimeout(ConnectionImpl.java:2490) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.zaxxer.hikari.pool.PoolBase.setNetworkTimeout(PoolBase.java:560) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:173) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:186) ~[HikariCP-3.4.5.jar:na]
+	... 69 common frames omitted
+Caused by: com.mysql.cj.exceptions.ConnectionIsClosedException: No operations allowed after connection closed.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_261]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_261]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_261]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_261]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.NativeSession.checkClosed(NativeSession.java:1171) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:576) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	at com.mysql.cj.jdbc.ConnectionImpl.setNetworkTimeout(ConnectionImpl.java:2486) ~[mysql-connector-java-8.0.21.jar:8.0.21]
+	... 72 common frames omitted
+
+2021-12-26 03:52:41.606  WARN 64115 --- [http-nio-8887-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.
+### The error may exist in file [/Users/zpc/community/target/classes/mapper/UserMapper.xml]
+### The error may involve life.majiang.community.mapper.UserMapper.selectByExample
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30033ms.]
+2021-12-26 03:52:42.409  WARN 64115 --- [http-nio-8887-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2a82afb4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:45.325  WARN 64115 --- [http-nio-8887-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@758530d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:47.411  WARN 64115 --- [http-nio-8887-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@44a212e0 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:52:50.332  WARN 64115 --- [http-nio-8887-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7cdf433e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-12-26 03:53:13.512  INFO 64115 --- [http-nio-8887-exec-7] l.majiang.community.cache.QuestionCache  : QUESTIONS_CACHE_REMOVE:sticky
+2021-12-26 03:53:40.655  WARN 64115 --- [http-nio-8887-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [life.majiang.community.exception.CustomizeException: 非法输入]
+2021-12-26 03:54:55.738  INFO 64115 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-12-26 03:54:55.739  INFO 64115 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-12-26 03:54:55.745  INFO 64115 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
