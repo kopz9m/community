@@ -2,8 +2,12 @@ body{
     background-color: #f7e1b5;
 }
 .main {
-    background-color: white;
+    background-color: #f7e1b5;
     margin: 30px;
+}
+
+.yellow-back{
+    background-color: #f7e1b5;
 }
 
 .side {
@@ -128,7 +132,9 @@ body{
 }
 
 .comment-sp {
-    margin-top: 0;
+    margin-top: 0px;
+    border-width: thin;
+    border-color: grey;
 }
 
 .menu {
@@ -168,4 +174,9 @@ body{
 
 .red {
     color: red !important;
+}
+
+.question-tag-div {
+    margin-top: 15px !important;
+    margin-bottom: 10px !important;
 }

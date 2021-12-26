@@ -2,6 +2,7 @@ package life.majiang.community.service;
 
 
 import life.majiang.community.dto.FileResult;
+import life.majiang.community.enums.FileTypeEnum;
 import life.majiang.community.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,43 +29,43 @@ public class FileService {
     @Value("${server.port}")
     private String port;
 
-    // 通过http url 上传图片
-    public FileResult upload(String url) {
-        File newFile = FileUtils.newFile(url);
-        assert newFile != null;
-        FileResult fileResult;
-        try {
-            fileResult = upload(new FileInputStream(newFile), "image/png", newFile.getName());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("new file exception", e);
-        }
-        FileUtils.deleteFile(newFile);
-        return fileResult;
-    }
-
     // 上传图片，写入目录
-    public FileResult upload(InputStream fileStream, String mimeType, String fileName) {
+    public FileResult upload(InputStream fileStream, String type, String fileName) {
         // 重命名
-        String newFileName = FileUtils.newUUIDPNGFileName();
-        System.out.println(mimeType);
-
+        String newFileName = FileUtils.newUUIDFileName(fileName);
+        String dateFolder = FileUtils.folderByDate();
+        Path path = null;
+        if (type.equals(FileTypeEnum.IMAGE.getType())){
+            path = Paths.get(FileUtils.getImagesPath() + dateFolder)
+                    .resolve(newFileName);
+        } else {
+            // todo
+        }
         // 存入目录
         try {
-            Files.copy(fileStream, Paths.get(FileUtils.path).resolve(newFileName));
+            Files.copy(fileStream, path);
         } catch (Exception e) {
-            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+            throw new RuntimeException("无法上传图片: " + e.getMessage());
         }
 
         FileResult fileResult = new FileResult();
         fileResult.setFileName(newFileName);
-        fileResult.setFileUrl("http://" + host + ":" + port + "/file/get/" + newFileName);
+        fileResult.setFileUrl("http://" + host + ":" + port + "/file/get/?folder=" + dateFolder
+                + "&filename=" + newFileName);
         return fileResult;
     }
 
     // 加载图片
-    public Resource load(String filename) {
+    public Resource load(String type, String folder, String filename) {
+        Path file = null;
+        // 根据头像或者图片设置文件路径
+        if (type.equals(FileTypeEnum.AVATAR.getType())) {
+            file = Paths.get(FileUtils.getAvatarsPath() + filename);
+        } else if (type.equals(FileTypeEnum.IMAGE.getType())) {
+            file = Paths.get(FileUtils.getImagesPath() + folder + System.getProperty("file.separator") + filename);
+        }
+
         try {
-            Path file = Paths.get(FileUtils.path + filename);
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;

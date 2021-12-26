@@ -6,20 +6,27 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static org.apache.commons.io.FileUtils.copyURLToFile;
 
 // 用于处理图片
 @Slf4j
 public class FileUtils {
-
-    // 图片存放根目录
-    public static String path = System.getProperty("user.home") + System.getProperty("file.separator")
+    // 文件存放根目录
+    private final static String path = System.getProperty("user.home") + System.getProperty("file.separator")
             + "Pictures" + System.getProperty("file.separator") + "majiang" + System.getProperty("file.separator");
+    // 头像目录
+    private final static String avatarsPath = path + "avatars" + System.getProperty("file.separator");
+    // 图片资源目录
+    private final static String imagesPath = path + "images" + System.getProperty("file.separator");
+    private final static String defaultAvatar = "default-avatar.png";
 
+    // getter
+    public static String getAvatarsPath() { return avatarsPath; }
+    public static String getImagesPath() { return imagesPath; }
+    public static String getDefaultAvatar() { return defaultAvatar; }
 
     private static List<String> suffix = new ArrayList<>();
 
@@ -41,7 +48,7 @@ public class FileUtils {
         return false;
     }
 
-    // 用 原文件名 + UUID 重命名文件名
+    // 用 原文件名 + UUID 重命名文件名, 保持文件后缀
     public static String newUUIDFileName(String fileName) {
         if (StringUtils.isBlank(fileName)) {
             return fileName;
@@ -58,35 +65,9 @@ public class FileUtils {
         }
     }
 
-    // 用 UUID 生成文件名
+    // 生成 UUID
     public static String newUUIDPNGFileName() {
         return UUID.randomUUID().toString().replace("-", "") + ".png";
-    }
-
-    // 返回系统用户路径 + 新的文件名
-    public static String newLocalFileName(String fileName) {
-        //String path = System.getProperty("user.dir") + File.separator;
-        return newLocalFileName(path, fileName);
-    }
-
-    // 组合 path 和文件名
-    public static String newLocalFileName(String path, String fileName) {
-        return path + newUUIDFileName(fileName);
-    }
-
-    // 将 url 的图片写入文件
-    public static File newFile(String url) {
-        File file;
-        String localFile = newLocalFileName(url);
-        log.info("FILE_UTILS_NEW_INFO, url : {}, localFile : {}", url, localFile);
-        file = new File(localFile);
-        try {
-            copyURLToFile(new URL(url), file);
-        } catch (Exception e) {
-            log.error("FILE_UTILS_NEW_ERROR, url : {}", url, e);
-            return null;
-        }
-        return file;
     }
 
     // 删除图片
@@ -98,12 +79,33 @@ public class FileUtils {
         }
     }
 
+    // 用当天日期作为目录
+    public static String folderByDate() {
+        Date date = new Date();
+        String dateFolder = new SimpleDateFormat("yyyy_MM_dd").format(date);
+        File dir = new File(imagesPath + dateFolder);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return dateFolder;
+    }
 
+    // 默认头像地址
+    public static String defaultAvatar(){
+        return avatarsPath + "default-avatar.png";
+    }
+
+    // 随机生成6位数的验证码
+    public static String randomCode() {
+        StringBuilder str = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            str.append(random.nextInt(10));
+        }
+        return str.toString();
+    }
     //test
     public static void main(String[] args) {
-//        String x = FileUtils.newLocalFileName("http://luckydraw.cn-bj.ufileos.com/ffb5134b-8070-4d65-be0f-c3b1a0050dbc.jpg");
-       System.out.println(path);
-
 
     }
 }
