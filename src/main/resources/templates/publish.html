@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2>
-                <span class="glyphicon glyphicon-plus" aria-hidden="true">新帖</span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"> 发起讨论：</span>
             </h2>
             <hr>
             <form action="/publish" method="post">
@@ -20,11 +20,11 @@
                 <div class="form-group">
                     <label for="title">标题：</label>
                     <input type="text" class="form-control" th:value="${title}" id="title" name="title"
-                           placeholder="有什么新鲜事" autocomplete="off">
+                           placeholder="输入一个简明的标题" autocomplete="off">
                 </div>
                 <!--帖子正文-->
                 <div class="form-group" id="question-editor" style="z-index: 2">
-                    <label for="description">问题补充 (必填，请参照右侧提示):</label>
+                    <label for="description">补充</label>
                     <textarea name="description" id="description" th:text="${description}" style="display:none;"
                               class="form-control"
                               cols="30"
@@ -38,7 +38,7 @@
                             path: "/js/lib/",
                             delay: 0,
                             watch: false,
-                            placeholder: "请输入问题描述",
+                            placeholder: "请输入详细描述",
                             imageUpload: true,
                             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                             imageUploadURL: "/upload/images",
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                            <button type="submit" class="btn btn-success btn-publish">发布</button>
+                            <button type="submit" class="btn btn-default btn-publish">发布</button>
                         </div>
                     </div>
                 </div>

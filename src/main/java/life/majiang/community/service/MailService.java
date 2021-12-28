@@ -94,6 +94,7 @@ public class MailService {
         user.setGmtCreate(System.currentTimeMillis());
         user.setGmtModified(System.currentTimeMillis());
         user.setName(emailUserDto.getName());
+        user.setPassword(emailUserDto.getPassword());
         user.setAvatarUrl("http://" + host + ":" + port + "/file/get/?type=avatars&filename="
                 + FileUtils.getDefaultAvatar());
         userMapper.insert(user);
