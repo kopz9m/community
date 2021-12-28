@@ -22,7 +22,8 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     EMAIL_ALREADY_EXISTS(2017, "邮箱用户已存在！"),
     REGISTER_FAIL(2018, "注册失败！"),
     WRONG_VERIFICATION_CODE(2019, "验证码错误！"),
-    EMAIL_DIFFER(2020, "邮箱不一致！")
+    EMAIL_DIFFER(2020, "邮箱不一致！"),
+    WRONG_EMAIL_ADDRESS(2017, "错误的邮箱地址格式！")
     ;
 
     private Integer code;

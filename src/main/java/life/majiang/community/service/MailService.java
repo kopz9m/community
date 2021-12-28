@@ -1,5 +1,6 @@
 package life.majiang.community.service;
 
+import com.sun.mail.smtp.SMTPAddressFailedException;
 import life.majiang.community.dto.EmailUserDto;
 import life.majiang.community.dto.ResultDTO;
 import life.majiang.community.exception.CustomizeErrorCode;
@@ -10,6 +11,7 @@ import life.majiang.community.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.mail.SendFailedException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,8 +42,7 @@ public class MailService {
     private JavaMailSender mailSender;
 
     // 给前端输入的邮箱，发送验证码
-    public ResultDTO sendMimeMail(String email, HttpSession session) {
-
+    public ResultDTO sendMimeMail(String email, HttpSession session){
         // 用户是否已经存在
         UserExample userExample = new UserExample();
         userExample.createCriteria().andEmailEqualTo(email.trim());
@@ -62,6 +64,9 @@ public class MailService {
             return ResultDTO.okOf();
         } catch (Exception e) {
             e.printStackTrace();
+            if (e instanceof MailSendException){
+                return ResultDTO.errorOf(CustomizeErrorCode.WRONG_EMAIL_ADDRESS);
+            }
             return ResultDTO.errorOf(CustomizeErrorCode.SEND_MAIL_FAIL);
         }
     }

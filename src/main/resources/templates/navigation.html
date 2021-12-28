@@ -12,7 +12,7 @@
                 <a class="navbar-brand" href="/">麻酱社区</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<!--                 搜索框-->
+                <!--                 搜索框-->
                 <form class="navbar-form navbar-left" action="/" method="get">
                     <div class="form-group">
                         <input type="text" class="form-control" name="search" placeholder="输入关键字">
@@ -38,9 +38,12 @@
                             <li><a href="/logout">退出登录</a></li>
                         </ul>
                     </li>
-                    <li th:if="${session.user == null}"></li>
-                    <li><a href="/register">注册</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
+                    <li th:if="${session.user == null}">
+                        <a href="/register">注册</a>
+                    </li>
+                    <li th:if="${session.user == null}">
+                        <a href="#" data-toggle="modal" data-target="#myModal">登录</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -190,7 +190,11 @@ function sendCode() {
         contentType: 'application/json',
         data: JSON.stringify({"email": email}),
         success: function (response) {
-            alert(response.message + "请查看您的邮箱。");
+            if (response.code == 200) {
+                alert(response.message + "请查看您的邮箱。")
+            } else {
+                alert(response.message)
+            }
         },
         dataType: "json",
     });
