@@ -12,6 +12,7 @@
                 <a class="navbar-brand" href="/">麻酱社区</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<!--                 搜索框-->
                 <form class="navbar-form navbar-left" action="/" method="get">
                     <div class="form-group">
                         <input type="text" class="form-control" name="search" placeholder="输入关键字">
@@ -23,7 +24,8 @@
                         <a href="/publish">发布</a>
                     </li>
                     </li>
-                    <li><a href="/profile/replies">通知 <span class="badge" th:text="${session.unreadCount}"></span></a>
+                    <li th:if="${session.user!=null}">
+                        <a href="/profile/replies">通知 <span class="badge" th:text="${session.unreadCount}"></span></a>
                     </li>
                     <li class="dropdown" th:if="${session.user != null}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -34,15 +36,11 @@
                             <li><a href="/profile/questions">我的发帖</a></li>
                             <li><a href="#">个人资料</a></li>
                             <li><a href="/logout">退出登录</a></li>
-                            <!--<li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>-->
                         </ul>
                     </li>
-                    <li th:if="${session.user == null}">
-                        <!--   <a href="https://github.com/login/oauth/authorize?client_id=1eaf4545974679177fdb&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>-->
-                        <a href="#" data-toggle="modal" data-target="#myModal">登录</a>
-                    </li>
-
+                    <li th:if="${session.user == null}"></li>
+                    <li><a href="/register">注册</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
                 </ul>
             </div>
         </div>
@@ -57,7 +55,7 @@
                     <h4 class="modal-title" id="myModalLabel">登录注册</h4>
                 </div>
                 <div class="modal-body" style="text-align:center">
-                    <a th:href="@{/login}" >
+                    <a th:href="@{/login}">
                         <img src="/images/email.png" height="50px">
                     </a>
                     <a th:href="@{https://github.com/login/oauth/authorize(client_id='1eaf4545974679177fdb',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('githubRedirectUri')},scope='user',state=1)}">

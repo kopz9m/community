@@ -3,11 +3,12 @@ package life.majiang.community.provider;
 import com.alibaba.fastjson.JSON;
 import life.majiang.community.dto.AccessTokenDTO;
 import life.majiang.community.dto.GithubUser;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-
+@Slf4j
 @Component
 public class GithubProvider {
 
@@ -24,7 +25,7 @@ public class GithubProvider {
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
             String token = string.split("&")[0].split("=")[1];
-            System.out.println(token);
+            log.error(token);
             return token;
         } catch (Exception e) {
             e.printStackTrace();

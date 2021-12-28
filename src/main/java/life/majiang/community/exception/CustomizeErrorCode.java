@@ -14,9 +14,15 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     NOTIFICATION_NOT_FOUND(2009, "消息莫非是不翼而飞了？"),
     FILE_UPLOAD_FAIL(2010, "图片上传失败"),
     INVALID_INPUT(2011, "非法输入"),
-    INVALID_OPERATION(2012, "兄弟，是不是走错房间了？"),
+    INVALID_OPERATION(2012, "操作错误"),
     USER_DISABLE(2013, "操作被禁用，如有疑问请联系管理员"),
     RATE_LIMIT(2014, "操作太快了，请稍后重试"),
+    WRONG_PASSWORD(2015, "密码错误或者用户不存在"),
+    SEND_MAIL_FAIL(2016, "邮件验证码发送失败"),
+    EMAIL_ALREADY_EXISTS(2017, "邮箱用户已存在！"),
+    REGISTER_FAIL(2018, "注册失败！"),
+    WRONG_VERIFICATION_CODE(2019, "验证码错误！"),
+    EMAIL_DIFFER(2020, "邮箱不一致！")
     ;
 
     private Integer code;

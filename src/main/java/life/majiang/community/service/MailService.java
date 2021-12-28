@@ -1,10 +1,13 @@
 package life.majiang.community.service;
 
 import life.majiang.community.dto.EmailUserDto;
+import life.majiang.community.dto.ResultDTO;
+import life.majiang.community.exception.CustomizeErrorCode;
 import life.majiang.community.mapper.UserMapper;
 import life.majiang.community.model.User;
 import life.majiang.community.model.UserExample;
 import life.majiang.community.utils.FileUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,6 +21,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import static com.sun.activation.registries.LogSupport.log;
+
+@Slf4j
 @Service
 public class MailService {
 
@@ -33,7 +39,15 @@ public class MailService {
     private JavaMailSender mailSender;
 
     // 给前端输入的邮箱，发送验证码
-    public boolean sendMimeMail(String email, HttpSession session) {
+    public ResultDTO sendMimeMail(String email, HttpSession session) {
+
+        // 用户是否已经存在
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email.trim());
+        if (userMapper.countByExample(userExample) > 0) {
+            return ResultDTO.errorOf(CustomizeErrorCode.EMAIL_ALREADY_EXISTS);
+        }
+
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setSubject("验证您的邮箱");//主题
@@ -45,34 +59,27 @@ public class MailService {
             mailMessage.setTo(email);
             mailMessage.setFrom(from);
             mailSender.send(mailMessage);
-            return true;
+            return ResultDTO.okOf();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return ResultDTO.errorOf(CustomizeErrorCode.SEND_MAIL_FAIL);
         }
     }
 
-
-    /**
-     * 检验验证码是否一致
-     */
-    public boolean loginByCode(EmailUserDto emailUserDto, HttpSession session, HttpServletResponse response) {
+    // 用户注册
+    public ResultDTO register(EmailUserDto emailUserDto, HttpSession session, HttpServletResponse response) {
         //获取session中的验证信息
         String email = (String) session.getAttribute("email");
         String codeSent = (String) session.getAttribute("codeSent");
-
         String codeToCheck = emailUserDto.getVerificationCode();
-
-        //如果email数据为空，或者不一致，注册失败
-        if (email == null || email.isEmpty()) {
-            //return "error,请重新注册";
-            return false;
+        log.info("输入邮箱" + emailUserDto.getEmail());
+        // 检查输入
+        if (email == null || !email.equals(emailUserDto.getEmail())) {
+            return ResultDTO.errorOf(CustomizeErrorCode.EMAIL_DIFFER);
         } else if (!codeSent.equals(codeToCheck)) {
-            //return "error,请重新注册";
-            return false;
+            return ResultDTO.errorOf(CustomizeErrorCode.WRONG_VERIFICATION_CODE);
         }
-
-        System.out.println("验证成功");
+        log.info("验证码验证成功");
 
         //保存数据
         User user = new User();
@@ -81,13 +88,13 @@ public class MailService {
         user.setEmail(email);
         user.setGmtCreate(System.currentTimeMillis());
         user.setGmtModified(System.currentTimeMillis());
-        user.setName("用户_" + System.currentTimeMillis());
+        user.setName(emailUserDto.getName());
         user.setAvatarUrl("http://" + host + ":" + port + "/file/get/?type=avatars&filename="
                 + FileUtils.getDefaultAvatar());
         userMapper.insert(user);
-        response.addCookie(new Cookie("token",token));
-        System.out.println("添加用户成功");
-        return true;
+        log.info("数据库添加用户成功" + email);
+        response.addCookie(new Cookie("token", token));
+        return ResultDTO.okOf();
     }
 
     // 密码校验，成功则加入 cookie
@@ -98,12 +105,12 @@ public class MailService {
         List<User> users = userMapper.selectByExample(userExample);
 
         if (users.size() == 0) {
-            System.out.println("用户不存在！");
+            log.error("用户不存在！");
             return false;
         }
 
         if (users.size() > 1) {
-            System.out.println("用户重复！");
+            log.error("用户重复！");
             return false;
         }
 
@@ -114,11 +121,11 @@ public class MailService {
             // 更新 cookie
             user.setToken(token);
             user.setGmtModified(System.currentTimeMillis());
-            userMapper.updateByExampleSelective(user,userExample);
-            response.addCookie(new Cookie("token",token));
+            userMapper.updateByExampleSelective(user, userExample);
+            response.addCookie(new Cookie("token", token));
             return true;
         }
-        System.out.println("密码错误!");
+        log.error("密码错误!");
         return false;
     }
 }

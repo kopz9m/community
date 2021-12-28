@@ -141,8 +141,104 @@ function selectTag(e) {
             //若value没有作为一个独立的标签出现过
             $("#tag").val(previous + ',' + value);
         }
-    }
-    else {
+    } else {
         $("#tag").val(value);
     }
+}
+
+// 邮箱密码登录
+function checkPass() {
+    var email = $("#inputEmail").val();
+    var password = $("#inputPassword").val();
+    console.log(email);
+
+    //login
+    $.ajax({
+        type: "POST",
+        url: "/login",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "email": email,
+            "password": password,
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                var isAccepted = confirm(response.message + "即将回到主页。");
+                if (isAccepted) {
+                    window.location.href = "/";
+                }
+            } else {
+                //密码错误
+                alert(response.message);
+            }
+        },
+        dataType: "json"
+    });
+}
+
+function sendCode() {
+    var email = $("#inputEmail").val();
+    debugger;
+    if (!email) {
+        alert("邮箱地址不得为空");
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/sendCode",
+        contentType: 'application/json',
+        data: JSON.stringify({"email": email}),
+        success: function (response) {
+            alert(response.message + "请查看您的邮箱。");
+        },
+        dataType: "json",
+    });
+}
+
+function registerCheck() {
+    var email = $("#inputEmail").val().trim();
+    var verificationCode = $("#verificationCode").val().trim();
+    var name = $("#username").val().trim();
+    var password = $("#inputPassword").val();
+    if (!email) {
+        alert("邮箱地址不得为空");
+        return;
+    }
+    if (!verificationCode || verificationCode.length != 6) {
+        alert("请输入六位验证码");
+        return;
+    }
+    if (!name) {
+        alert("用户名不得为空");
+        return;
+    }
+    if (!password || password.length < 4) {
+        alert("请输入四位以上密码");
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/register",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "email": email,
+            "verificationCode": verificationCode,
+            "name": name,
+            "password": password
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                var isAccepted = confirm(response.message + "将自动登录并返回主页。");
+                if (isAccepted) {
+                    window.location.href = "/";
+                }
+            } else {
+                //注册失败
+                alert(response.message);
+            }
+        },
+        dataType: "json",
+    });
 }

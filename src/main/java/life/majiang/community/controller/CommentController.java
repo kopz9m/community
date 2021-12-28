@@ -22,6 +22,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    // 提交评论
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object post(@RequestBody CommentCreateDto commentCreateDto,
@@ -47,6 +48,7 @@ public class CommentController {
         return ResultDTO.okOf();
     }
 
+    // 展开二级评论
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Long id) {

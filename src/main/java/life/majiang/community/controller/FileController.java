@@ -33,7 +33,7 @@ public class FileController {
         MultipartFile file = multipartRequest.getFile("editormd-image-file");
 
         try {
-            System.out.println("uploading image------");
+            log.error("uploading image------");
             FileResult fileResult = fileService.upload(file.getInputStream(), type, file.getOriginalFilename());
             FileDTO fileDTO = new FileDTO();
             fileDTO.setSuccess(1);

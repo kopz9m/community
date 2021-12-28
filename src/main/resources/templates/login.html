@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>登录</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <head th:insert="~{import :: head}"></head>
     <link rel="stylesheet" href="/css/signin.css">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link rel="stylesheet" href="/css/ie10-viewport-bug-workaround.css"/>
@@ -16,18 +16,20 @@
 
 <div class="container">
 
-    <form class="form-signin" action="/loginCheck" method="post">
+    <div class="form-signin" >
         <h2 class="form-signin-heading" style="text-align: center">欢迎登录麻酱社区</h2>
         <label for="inputEmail" class="sr-only">邮箱地址</label>
         <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required autofocus>
+
         <label for="inputPassword" class="sr-only">密码</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-
 <!--        提交 -->
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="checkPass()">登录</button>
 <!--        注册账号-->
-        <button type="button" class="btn btn-default btn-lg btn-block" >注册</button>
-    </form>
+        <button type="button" class="btn btn-default btn-lg btn-block" >
+            <a href="/register">注册</a>
+        </button>
+    </div>
 
 </div> <!-- /container -->
 </body>

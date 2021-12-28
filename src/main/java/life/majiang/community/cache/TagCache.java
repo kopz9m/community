@@ -62,6 +62,6 @@ public class TagCache {
 
     public static void main(String[] args) {
         int i = (5 - 1) >>> 1;
-        System.out.println(i);
+        //log.error(i);
     }
 }

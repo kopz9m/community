@@ -105,10 +105,12 @@ public class CommentService {
         notificationMapper.insert(notification);
     }
 
+    // 展开二级评论
     public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum question) {
         CommentExample commentExample = new CommentExample();
-        commentExample.createCriteria().andParentIdEqualTo(id)
-            .andTypeEqualTo(question.getType());
+        commentExample.createCriteria()
+                .andParentIdEqualTo(id)
+                .andTypeEqualTo(question.getType());
         commentExample.setOrderByClause("gmt_create desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
 
