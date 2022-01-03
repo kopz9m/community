@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>麻酱社区</title>
+    <head th:insert="~{import :: head}"></head>
+</head>
+<body>
+<div class="jumbotron" style="min-height: 300px;background-color: whitesmoke">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"><h1>出错啦！！！</h1>
+        <p th:text="${message}">服务出错，请稍等下再来试试~</p>
+        <p><a class="btn btn-default btn-lg" href="/" role="button">回到主页</a></p>
+    </div>
+</div>
+</body>
+</html>
