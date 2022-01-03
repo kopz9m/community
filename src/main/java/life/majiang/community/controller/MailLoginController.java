@@ -52,7 +52,7 @@ public class MailLoginController {
     public ResultDTO login(
             @RequestBody EmailUserDto emailUserDto,
             HttpServletResponse response) {
-        log.error("要验证的邮箱：" + emailUserDto.getEmail());
+        log.info("要验证的邮箱：" + emailUserDto.getEmail());
         if (mailService.loginInByPass(emailUserDto.getEmail(), emailUserDto.getPassword(), response)) {
             return ResultDTO.okOf();
         }

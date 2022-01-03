@@ -29,7 +29,7 @@ public class FileService {
     @Value("${server.port}")
     private String port;
 
-    // 上传图片，写入目录
+    // 上传本地图片，写入目录
     public FileResult upload(InputStream fileStream, String type, String fileName) {
         // 重命名
         String newFileName = FileUtils.newUUIDFileName(fileName);

@@ -1,5 +1,6 @@
 package life.majiang.community.utils;
 
+import life.majiang.community.enums.FileTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -104,6 +105,7 @@ public class FileUtils {
         }
         return str.toString();
     }
+
     //test
     public static void main(String[] args) {
 
