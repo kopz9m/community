@@ -1,0 +1,40 @@
+github:
+  client:
+    id: xxx
+    secret: xxx
+  redirect:
+    url: http://localhost:8887/callback
+logging:
+  file:
+    max-history: 15
+    max-size: 10MB
+    name: logs/majiang.log
+  level:
+    root: info
+myHost: localhost
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: life.majiang.community.model
+server:
+  port: 8887
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      idle-timeout: 600
+      max-lifetime: 600
+    password: 123456
+    url: jdbc:mysql://localhost/majiang?useUnicode=true&characterEncoding=UTF-8
+    username: root
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    password: efzogkkefvtzebge
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+    username: xxx@qq.com
