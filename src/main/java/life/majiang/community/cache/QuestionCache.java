@@ -25,12 +25,14 @@ public class QuestionCache {
     @Autowired
     private UserMapper userMapper;
 
+    // 缓存置顶问题
     private static Cache<String, List<QuestionDTO>> cacheQuestions = CacheBuilder.newBuilder()
             .maximumSize(100)
             .expireAfterWrite(10, TimeUnit.MINUTES)
             .removalListener(entity -> log.info("QUESTIONS_CACHE_REMOVE:{}", entity.getKey()))
             .build();
 
+    // 获取置顶问题
     public List<QuestionDTO> getStickies() {
         List<QuestionDTO> stickies;
         try {
