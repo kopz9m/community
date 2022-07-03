@@ -13,7 +13,7 @@ GitHub、邮箱登录功能；
 JDK，Maven
 2. 克隆代码到本地
 ```sh
-git clone https://github.com/codedrinker/community.git
+git clone https://github.com/kopz9m/community.git
 ````
 3. 运行DB目录下数据库脚本，创建数据库
 
